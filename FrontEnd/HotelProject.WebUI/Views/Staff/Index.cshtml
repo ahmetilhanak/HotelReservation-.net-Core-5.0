@@ -1,0 +1,31 @@
+﻿@model List<StaffViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/AdminLayout.cshtml";
+    int count = 0;
+}
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Staff Name</th>
+        <th>Staff Title</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Details</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <td>@item.Name</td>
+            <td>@item.Title</td>
+            <td><a class="btn mb-1 btn-rounded btn-outline-danger" asp-controller="Staff" asp-action="DeleteStaff" asp-route-id=@item.StaffID>Delete</a></td>
+            <td><a class="btn mb-1 btn-rounded btn-outline-success" asp-controller="Staff" asp-action="UpdateStaff" asp-route-id=@item.StaffID>Update</a></td>
+            <td><a href="#" class="btn mb-1 btn-rounded btn-outline-dark">Details</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Staff/AddStaff/" class="btn mb-1 btn-rounded btn-outline-info">Add New Staff</a>
+

@@ -1,0 +1,30 @@
+﻿@model List<ResultWorkLocationDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/AdminLayout.cshtml";
+    int count = 0;
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <td>@count</td>
+            <td>@item.WorkLocationName</td>
+            <td>@item.WorkLocationCity</td>
+            <td><a class="btn btn-danger" asp-action="DeleteWorkLocation" asp-controller="AdminWorkLocation" asp-route-id="@item.WorkLocationID">Delete</a></td>
+            <td><a class="btn btn-secondary" asp-action="UpdateWorkLocation" asp-controller="AdminWorkLocation" asp-route-id="@item.WorkLocationID">Update</a></td>
+        </tr>
+    }
+</table>
+<br />
+<a asp-controller="AdminWorkLocation" asp-action="AddWorkLocation" class="btn btn-primary">Add New User</a>

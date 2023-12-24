@@ -1,0 +1,54 @@
+﻿@model List<ResultBookingDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/AdminLayout.cshtml";
+    int count = 0;
+}
+
+
+
+<div class="card-body">
+    <div class="card-title">
+        <h4>Bookings</h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>CheckIn Date</th>
+                    <th>CheckOut Date</th>
+                    <th>Status</th>
+                    <th>Confirm</th>
+                    <th>Cancel</th>
+                    <th>Hold It</th>
+                    <th>Update</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th>@count</th>
+                        <th>@item.Name</th>
+                        <th>@(((DateTime)item.CheckIn).ToString("dd-MMMM-yyyy"))</th>
+                        <th>@(((DateTime)item.CheckOut).ToString("dd-MMMM-yyyy"))</th>
+                        <td><span class="badge badge-primary px-2">@item.Status</span></td>
+                        <td><a asp-route-id="@item.BookingID" asp-action="ApprovedReservation" asp-controller="AdminBooking" class="btn btn-outline-primary">Confirm</a></td>
+                        <td><a asp-route-id="@item.BookingID" asp-action="CancelledReservation" asp-controller="AdminBooking" class="btn btn-outline-danger">Cancel</a></td>
+                        <td><a asp-route-id="@item.BookingID" asp-action="HoldReservation" asp-controller="AdminBooking" class="btn btn-outline-warning">Hold It</a></td>
+                        <td><a asp-route-id="@item.BookingID" asp-action="UpdateBooking" asp-controller="AdminBooking" class="btn btn-outline-info">Update</a></td>
+                        <td><a asp-route-id="@item.BookingID" asp-action="UpdateBooking" asp-controller="AdminBooking" class="btn btn-outline-info">Details</a></td>
+
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

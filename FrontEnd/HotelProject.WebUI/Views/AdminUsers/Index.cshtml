@@ -1,0 +1,63 @@
+﻿@* @using HotelProject.EntityLayer.Concrete *@
+@* @model List<AppUser> *@
+
+@model List<ResultAppUserDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/AdminLayout.cshtml";
+    int counter = 0;
+
+    string inClassDefinationText = "";
+    string statusDefination = "";
+
+}
+
+
+<table class="table table-xs mb-0">
+    <thead>
+        <tr>
+            <th># 
+            Name Surname</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Work Location</th>
+            <th>Status</th>
+            <th>Delete</th>
+            <th>Update</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.Status)
+            {
+
+                inClassDefinationText = "fa fa-circle-o text-success  mr-3";
+                statusDefination = "Active";
+            }
+            else
+            {
+
+                inClassDefinationText = "fa fa-circle-o text-warning  mr-3";
+                statusDefination = "Deactive";
+            }
+            counter++;
+            <tr>
+                <td><img src=@item.ImageUrl class=" rounded-circle mr-3"  alt="">
+                @item.Name @item.Surname</td>
+                <td>@item.City</td>
+                <td>@item.Country</td>
+                <td>@item.WorkLocationName</td>
+                <td><i class="@inClassDefinationText"></i>@statusDefination</td>
+                <td><a href="#" class="btn btn-danger">Delete</a></td>
+                <td><a href="#" class="btn btn-secondary">Update</a></td>
+                
+            </tr>
+
+        }
+    </tbody>
+</table>
+<br />
+<a asp-controller="Register" asp-action="Index" class="btn btn-primary">Add New User</a>

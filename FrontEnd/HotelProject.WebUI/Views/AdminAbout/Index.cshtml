@@ -1,0 +1,27 @@
+﻿@model List<ResultAboutDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/AdminLayout.cshtml";
+    int count = 0;
+}
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Title-1</th>
+        <th>Title-1</th>
+        <th>Update</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <td>@item.Title1</td>
+            <td>@item.Title2</td>
+            <td><a class="btn mb-1 btn-rounded btn-outline-success" asp-controller="AdminAbout" asp-action="UpdateAbout" asp-route-id=@item.AboutID>Update</a></td>
+        </tr>
+    }
+</table>
+
+
+

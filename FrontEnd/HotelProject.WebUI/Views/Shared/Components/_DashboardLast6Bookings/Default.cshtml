@@ -1,0 +1,86 @@
+﻿@model List<ResultLast6BookingsDto>
+@{
+    int counter = 0;
+
+    string inClassDefinationText1 = "";
+    string inClassDefinationText2 = "";
+    // string statusDefination = "";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="active-member">
+                    <div class="table-responsive">
+                        <table class="table table-xs mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Customer Name</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                    @* <th>Status</th> *@
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    if (item.Status=="Onaylandı")
+                                    {
+
+                                        inClassDefinationText1 = "progress-bar bg-success";
+                                        inClassDefinationText2 = "fa fa-circle-o text-success  mr-2";
+                                        @* statusDefination = "Active"; *@
+                                    }
+                                    else if(item.Status == "Onay Bekliyor")
+                                    {
+
+                                        inClassDefinationText1 = "progress-bar bg-warning";
+                                        inClassDefinationText2 = "fa fa-circle-o text-warning  mr-2";
+                                        @* statusDefination = "Deactive"; *@
+
+                                    }
+                                    else if (item.Status == "Müşteri Aranacak")
+                                    {
+
+                                        inClassDefinationText1 = "progress-bar bg-info";
+                                        inClassDefinationText2 = "fa fa-circle-o text-info  mr-2";
+                                        @* statusDefination = "Active"; *@
+                                    }
+                                    else
+                                    {
+
+                                        inClassDefinationText1 = "progress-bar bg-danger";
+                                        inClassDefinationText2 = "fa fa-circle-o text-danger  mr-2";
+                                        @* statusDefination = "Active"; *@
+                                    }
+
+                                    counter++;
+                                    <tr>
+                                        <td>@item.Name</td>
+                                        <td>@item.City</td>
+                                        <td>
+                                            <span>@item.Country</span>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <div class="progress" style="height: 6px">
+                                                    <div class="@inClassDefinationText1" style="width: 50%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><i class="@inClassDefinationText2"></i> @item.Status</td>
+                                       
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
